@@ -7,4 +7,49 @@
     android:layout_height="match_parent"
     tools:context=".Register">
 
+    <EditText
+        android:id="@+id/emailRegisterEditText"
+        android:layout_width="230dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="98dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="27dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:hint="email"
+        app:layout_constraintBottom_toTopOf="@+id/passwordRegisterEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/passwordRegisterEditText"
+        android:layout_width="219dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginBottom="52dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="password"
+        app:layout_constraintBottom_toTopOf="@+id/registerButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailRegisterEditText" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="149dp"
+        android:layout_marginBottom="402dp"
+        android:text="Register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordRegisterEditText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
