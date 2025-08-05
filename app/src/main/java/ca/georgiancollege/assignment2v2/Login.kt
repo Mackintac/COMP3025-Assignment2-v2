@@ -9,9 +9,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import ca.georgiancollege.assignment2v2.databinding.ActivityLoginBinding
 import ca.georgiancollege.assignment2v2.databinding.ActivityRegisterBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 class Login : AppCompatActivity() {
-
+    private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -25,9 +28,24 @@ class Login : AppCompatActivity() {
             insets
         }
 
+        auth = Firebase.auth
+
         binding.registerNowTextView.setOnClickListener {
                 val intentObj = Intent(applicationContext, Register::class.java)
                 startActivity(intentObj)
+        }
+
+        binding.loginButton.setOnClickListener{
+            signIn("test@test.com", "asdfasdf123")
+        }
+    }
+
+    fun signIn(email:String, password:String){
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this){task ->
+            if (task.isSuccessful){
+                val intentObj = Intent(applicationContext, MainActivity::class.java)
+                startActivity(intentObj)
+            }
         }
     }
 }
