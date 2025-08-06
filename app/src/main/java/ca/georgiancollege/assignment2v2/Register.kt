@@ -31,7 +31,9 @@ class Register : AppCompatActivity() {
         auth = Firebase.auth
 
         binding.registerButton.setOnClickListener{
-            registerUser("test@test.com","asdfasdf123" )
+            val email = binding.emailRegisterEditText.text.toString()
+            val password = binding.passwordRegisterEditText.text.toString()
+            registerUser(email, password )
         }
 
 

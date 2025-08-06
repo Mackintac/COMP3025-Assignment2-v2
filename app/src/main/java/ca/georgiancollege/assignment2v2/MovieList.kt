@@ -1,5 +1,6 @@
 package ca.georgiancollege.assignment2v2
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -22,5 +23,10 @@ class MovieList : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
+        val movieData = intent.getStringExtra("movie data")
+
+        binding.movieListTextView.setText(movieData)
     }
 }
