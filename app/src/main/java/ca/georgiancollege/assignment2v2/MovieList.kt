@@ -36,7 +36,6 @@ class MovieList : AppCompatActivity() {
         collectionReference = db.collection("movies")
 
         movieList = ArrayList<MovieModel>()
-        val movieData = intent.getStringExtra("movie data")
 
         myAdapter = MyAdapter(movieList, this)
         binding.recyclerView.layoutManager = LinearLayoutManager(this)

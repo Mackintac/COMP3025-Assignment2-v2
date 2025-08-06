@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class MyAdapter(private var movies: List<MovieModel>, private var context: Context) :
     RecyclerView.Adapter<MyViewHolder>() {
@@ -27,12 +28,11 @@ class MyAdapter(private var movies: List<MovieModel>, private var context: Conte
         var movie: MovieModel = movies.get(position)
         holder.title.setText(movie.getTitle())
         holder.year.setText(movie.getYear())
-        holder.imageView.(movie.getPoster())
+        Glide.with(context).load(movie.getPoster()).into(holder.imageView)
         holder.rating.setText(movie.getRating())
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, MovieList::class.java)
-            intent.putExtra("title", movie.getTitle())
             context.startActivity(intent)
         }
     }

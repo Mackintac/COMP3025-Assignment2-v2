@@ -38,11 +38,12 @@ class MainActivity : AppCompatActivity() {
 
             val inputTitle = binding.titleEditText.text.toString()
 
-            val inputDirector= binding.directorEditText.text.toString()
+            val inputRating= binding.ratingEditText.text.toString()
 
+            val inputPoster = binding.posterEditText.text.toString()
             val inputYear= binding.yearEditText.text.toString()
 
-            saveDataToNewDocument(inputTitle, inputDirector, inputYear)
+            saveDataToNewDocument(inputTitle, inputRating, inputPoster, inputYear)
         }
 
         binding.getDataButton.setOnClickListener {
@@ -50,9 +51,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun saveDataToNewDocument(title: String, director: String, year:String){
+    fun saveDataToNewDocument(title: String, rating: String, poster: String, year: String){
 
-        val movieData = MovieModel(title, director, year)
+        val movieData = MovieModel(title, poster , rating, year)
 
 
         collectionReference.add(movieData).addOnSuccessListener { documentReference ->
@@ -71,19 +72,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getAllDocumentsInCollection(){
-        collectionReference.get().addOnSuccessListener { documents ->
-        var data: String = ""
-        for (document in documents){
-            val movie: MovieModel = document.toObject( MovieModel::class.java)
-
-            data += "Title: " + movie.getTitle() + " Director: " + movie.getDirector() + " Year: " + movie.getYear() + "\n"
-            }
-
             val intentObj = Intent(applicationContext, MovieList::class.java)
-            intentObj.putExtra("movie data", data)
-
             startActivity(intentObj)
         }
 
     }
-}
