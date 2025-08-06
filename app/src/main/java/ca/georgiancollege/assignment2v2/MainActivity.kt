@@ -1,6 +1,8 @@
 package ca.georgiancollege.assignment2v2
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -30,10 +32,17 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         db = FirebaseFirestore.getInstance()
-        collectionReference = db.collection("Users")
+        collectionReference = db.collection("movies")
 
         binding.setDataButton.setOnClickListener{
-//            saveDataToNewDocument()
+
+            val inputTitle = binding.titleEditText.text.toString()
+
+            val inputDirector= binding.directorEditText.text.toString()
+
+            val inputYear= binding.yearEditText.text.toString()
+
+            saveDataToNewDocument(inputTitle, inputDirector, inputYear)
         }
 
         binding.getDataButton.setOnClickListener {
@@ -45,11 +54,19 @@ class MainActivity : AppCompatActivity() {
 
         val movieData = MovieModel(title, director, year)
 
+
         collectionReference.add(movieData).addOnSuccessListener { documentReference ->
+
+            if(documentReference != null)
             {
-                val docId = documentReference.id
+                Log.d("add", "Entry added successfully!")
+            } else{
+                Log.d("add", "Error adding movie entry!")
             }
+
+
         }
+
 
     }
 
@@ -60,9 +77,13 @@ class MainActivity : AppCompatActivity() {
             val movie: MovieModel = document.toObject( MovieModel::class.java)
 
             data += "Title: " + movie.getTitle() + " Director: " + movie.getDirector() + " Year: " + movie.getYear() + "\n"
-
-
             }
+
+            val intentObj = Intent(applicationContext, MovieList::class.java)
+            intentObj.putExtra("movie data", data)
+
+            startActivity(intentObj)
         }
+
     }
 }
