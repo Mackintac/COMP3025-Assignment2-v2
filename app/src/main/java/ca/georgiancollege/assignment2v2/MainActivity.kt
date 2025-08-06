@@ -8,7 +8,9 @@ import androidx.core.view.WindowInsetsCompat
 import ca.georgiancollege.assignment2v2.databinding.ActivityMainBinding
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.firestore
 
 class MainActivity : AppCompatActivity() {
@@ -29,8 +31,9 @@ class MainActivity : AppCompatActivity() {
         }
         db = FirebaseFirestore.getInstance()
         collectionReference = db.collection("Users")
+
         binding.setDataButton.setOnClickListener{
-            saveDataToNewDocument()
+//            saveDataToNewDocument()
         }
 
         binding.getDataButton.setOnClickListener {
@@ -38,11 +41,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun saveDataToNewDocument(){
+    fun saveDataToNewDocument(title: String, director: String, year:String){
+
+        val movieData = MovieModel(title, director, year)
+
+        collectionReference.add(movieData).addOnSuccessListener { documentReference ->
+            {
+                val docId = documentReference.id
+            }
+        }
 
     }
 
     fun getAllDocumentsInCollection(){
+        collectionReference.get().addOnSuccessListener { documents ->
+        var data: String = ""
+        for (document in documents){
+            val movie: MovieModel = document.toObject( MovieModel::class.java)
 
+            data += "Title: " + movie.getTitle() + " Director: " + movie.getDirector() + " Year: " + movie.getYear() + "\n"
+
+
+            }
+        }
     }
 }
