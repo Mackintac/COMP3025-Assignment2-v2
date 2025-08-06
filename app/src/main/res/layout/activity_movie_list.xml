@@ -7,13 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".MovieList">
 
-    <TextView
-        android:id="@+id/movieListTextView"
-        android:layout_width="333dp"
-        android:layout_height="585dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="304dp"
+        android:layout_height="647dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.372" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,15 +1,20 @@
 package ca.georgiancollege.assignment2v2
 
+import android.net.Uri
+
 class MovieModel() {
     private lateinit var title: String
-    private lateinit var director: String
+    private lateinit var rating: String
+    private lateinit var poster: String
     private lateinit var year: String
 
 
 
-    constructor(title:String, director:String, year: String) : this() {
+    constructor(title:String, poster: String,
+                rating: String, year: String) : this() {
         this.title = title
-        this.director = director
+        this.rating = rating
+        this.poster = poster
         this.year = year
     }
 
@@ -21,15 +26,14 @@ class MovieModel() {
         this.title = title
     }
 
-
-    fun getDirector(): String{
-        return director
+    fun getRating(): String
+    {
+        return rating
     }
 
-    fun setDirector(director:String){
-        this.director = director
+    fun getPoster(): String{
+        return poster
     }
-
     fun getYear():String {
         return year
     }
