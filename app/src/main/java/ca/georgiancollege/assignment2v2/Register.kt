@@ -36,6 +36,12 @@ class Register : AppCompatActivity() {
             registerUser(email, password )
         }
 
+        binding.registerBackBtn.setOnClickListener {
+            val intentObj = Intent(applicationContext, Login::class.java)
+            startActivity(intentObj)
+        }
+
+
 
     }
 
