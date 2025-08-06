@@ -36,8 +36,5 @@ class MyAdapter(private var movies: List<MovieModel>, private var context: Conte
             context.startActivity(intent)
         }
     }
-    fun updateItems(newMovies: List<MovieModel>){
-        this.movies = newMovies
-        notifyDataSetChanged()
-    }
+
 }
